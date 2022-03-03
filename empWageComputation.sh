@@ -5,7 +5,11 @@ checkEmp=$((RANDOM%2))
 
 if [ $isPresent -eq $checkEmp ];
 then
-	echo "Emp is Present";
+	empHrs=8;
+	rate_per_hr=20;
+	salary=$(($empHrs*$rate_per_hr));
+	echo $salary
 else 
-	echo "Emp is Absent";
+	salary=0;
+	echo $salary;
 fi
