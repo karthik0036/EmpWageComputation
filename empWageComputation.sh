@@ -23,12 +23,20 @@ case $1 in
 echo $empHrs
 }
 
+function getEmpWageForADay(){
+	empHrs=$1
+	echo $(($empHrs*$empRatePerHrs))
+}
+
 while [[ $totalEmpHrs -lt $maxWorkingHrs && $totalWorkingDays -lt $maxWorkingDays ]]
 do
 	((totalWorkingDays++))
 	empCheck=$((RANDOM%3));
 	empHrs=$( getWorkingHrs $empCheck )
 	totalEmpHrs=$(($totalEmpHrs+$empHrs));
+	dailyWage[$totalWorkingDays]=$( getEmpWageForADay $empHrs )
+
 done
 totalSalary=$(($totalEmpHrs*$empRatePerHrs));
 echo $totalSalary
+echo ${dailyWage[@]}
