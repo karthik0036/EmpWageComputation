@@ -1,21 +1,24 @@
 #!/bin/bash -x
 
-isFullTime=1;
-isPartTime=2;
-totalSalary=0;
-empRatePerHrs=20;
-maxWorkingHrs=100;
-maxWorkingDays=20;
+#CONSTANTS
+IS_FULLTIME=1;
+IS_PARTTIME=2;
+EMP_RATE_PER_HR=20;
+MAX_WORK_HRS=100;
+MAX_WORK_DAYS=20;
+
+#Variables
 totalEmpHrs=0;
 totalWorkingDays=0;
+
 declare -A dailyWage
 
 function  getWorkingHrs () {
 case $1 in
-      $isFullTime)
+      $IS_FULLTIME)
          empHrs=8
          ;;
-      $isPartTime)
+      $IS_PARTTIME)
          empHrs=4
          ;;
       *)
@@ -26,10 +29,10 @@ echo $empHrs
 }
 
 function getEmpWageForADay(){
-	echo $(($1*$empRatePerHrs))
+	echo $(($1*$EMP_RATE_PER_HR))
 }
 
-while [[ $totalEmpHrs -lt $maxWorkingHrs && $totalWorkingDays -lt $maxWorkingDays ]]
+while [[ $totalEmpHrs -lt $MAX_WORK_HRS && $totalWorkingDays -lt $MAX_WORK_DAYS ]]
 do
 	((totalWorkingDays++))
 	empCheck=$((RANDOM%3));
